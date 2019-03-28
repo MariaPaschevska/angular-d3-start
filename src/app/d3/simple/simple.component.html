@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>Hello, my first D3 page</h2>
+      <h4>My data: {{myData}}</h4><br>
+      <div id="first-d3"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="btn btn-primary" (click)="addElement()">Add paragraph</button>
+      <button type="button" class="btn btn-primary" (click)="connectData()">Connect your data</button>
+      <button type="button" class="btn btn-primary" (click)="drawFirstChart()">Draw my first chart</button>
+      <button type="button" class="btn btn-primary" (click)="drawFirstSvg()">Draw my first SVG image with D3</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div id="d3-chart"></div>
+    </div>
+    <div class="col-6">
+      <div id="d3-svg"></div>
+    </div>
+  </div>
+</div>
