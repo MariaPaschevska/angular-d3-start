@@ -11,7 +11,10 @@
       <button type="button" class="btn btn-primary" (click)="addElement()">Add paragraph</button>
       <button type="button" class="btn btn-primary" (click)="connectData()">Connect your data</button>
       <button type="button" class="btn btn-primary" (click)="drawFirstChart()">Draw my first chart</button>
-      <button type="button" class="btn btn-primary" (click)="drawFirstSvg()">Draw my first SVG image with D3</button>
+      <button type="button" class="btn btn-primary" (click)="drawFirstSvg()">Draw SVG image with D3</button>
+      <button type="button" class="btn btn-primary" (click)="drawDiagram1()">Draw Diagram 1</button>
+      <button type="button" class="btn btn-primary" (click)="drawRect1()">Draw Rect 1</button>
+      <button type="button" class="btn btn-primary" (click)="drawPoint()">Draw Point diagram</button>
     </div>
   </div>
   <div class="row">
@@ -20,6 +23,22 @@
     </div>
     <div class="col-6">
       <div id="d3-svg"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div id="diagram1"></div>
+    </div>
+    <div class="col-6">
+      <div id="rect1"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div id="point1"></div>
+    </div>
+    <div class="col-6">
+      <div id="point2"></div>
     </div>
   </div>
 </div>
