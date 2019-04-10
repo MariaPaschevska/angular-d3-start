@@ -18,6 +18,10 @@ export class SimpleComponent implements OnInit {
     d3.select('#first-d3').append('p').text('New paragraph!');
   }
 
+  // !!! (function(d, i, n) { return d; })  is not equal the ((d, i, n) => return d; )
+  // to use => : n[i] is the 'this' of regular function
+
+
   connectData() {
     d3.select("body").selectAll("p")
       .data(this.myData)
@@ -152,6 +156,18 @@ export class SimpleComponent implements OnInit {
     let w = 500;
     let h = 100;
 
+    let scale = d3.scaleLinear()
+      .domain([100, 500])
+      .range([10, 350]);
+
+    let xScale = d3.scaleLinear()
+      .domain([0, d3.max(dataset, function(d) { return d[0]; })])
+      .range([0, w]);
+
+    let yScale = d3.scaleLinear()
+      .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+      .range([0, h]);
+
     let svg = d3.select('#point1')
       .append("svg")
       .attr("width", w)
@@ -162,11 +178,49 @@ export class SimpleComponent implements OnInit {
       .enter()
       .append("circle")
       .attr("cx", function(d) {
-        return d[0];
+        return xScale(d[0]);
       })
       .attr("cy", function(d) {
-        return d[1];
+        return yScale(d[1]);
       })
-      .attr("r", 5);
+      .attr("r", function(d) {
+        return Math.sqrt(h - d[1]);
+      });
+  }
+
+  scale() {
+    let dataset = this.myData.map(this.myData.range(15), function (i) {
+      return Math.random() * 500;
+    });
+    let w = 400, h = 300;
+
+    let svg = d3.select('#point2')
+      .append('svg')
+      .attr("width", w)
+      .attr("height", h);
+
+    let xScale = d3.scaleOrdinal()
+      .domain(dataset)
+      .rangeBands([0, w], 0.1, 0.3);
+
+    let yScale = d3.scaleLinear()
+      .domain([0, d3.max(dataset) * 1.1])
+      .range([0, h]);
+
+    svg.selectAll('rect')
+      .data(dataset)
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr("x", function(d, i) {
+        return xScale(d);
+      })
+      .attr("y", function(d) {
+        return h - yScale(d);
+      })
+      .attr("width", xScale.rangeBand())
+      .attr("height", function(d) {
+        return yScale(d);
+      })
   }
 }
